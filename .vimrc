@@ -6,6 +6,7 @@ filetype plugin indent on
 set clipboard=unnamed " copy and paste from the system clipboard
 set cm=blowfish " encrypt files using the blowfish algorithm
 set foldmethod=marker
+set visualbell " do not beep at me!
 " }}} 
 
 " view {{{
