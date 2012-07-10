@@ -1,12 +1,11 @@
 " general {{{
+filetype plugin indent on
 set nocompatible " Vim Baby!
 set hidden " don't requiring saving when switching between buffers
 set backspace=indent,eol,start " allow for more intuitive deletion
-filetype plugin indent on
 set clipboard=unnamed " copy and paste from the system clipboard
 set cm=blowfish " encrypt files using the blowfish algorithm
 set foldmethod=marker
-set visualbell " do not beep at me!
 " }}} 
 
 " view {{{
@@ -42,22 +41,25 @@ set shiftwidth=2
 
 " mappings {{{
 
-" buffer and tab navigation
-nmap <C-j> :bp <CR>
-nmap <C-k> :bn <CR>
-nmap <C-h> :tabp <CR>
-nmap <C-l> :tabn <CR>
-
 " window navigation
-nmap <M-j> <C-w>j
-nmap <M-k> <C-w>k
-nmap <M-h> <C-w>h
-nmap <M-l> <C-w>l
+nmap <C-j> <C-w>j
+nmap <C-k> <C-w>k
+nmap <C-h> <C-w>h
+nmap <C-l> <C-w>l
+
+" buffer and tab navigation
+nmap <M-j> :bp <CR>
+nmap <M-k> :bn <CR>
+nmap <M-h> :tabp <CR>
+nmap <M-l> :tabn <CR>
 
 " add new lines in normal mode
 nmap <CR> o<ESC>
 nmap <S-CR> O<ESC>
 
+" load current file
 nmap <leader>L :source % <CR>
-map R :%d<CR>:r!
+
+" escape and yank XML
+nmap <leader>J :%s/"/\\"/g<CR>ggVGJ^y$u
 " }}}
