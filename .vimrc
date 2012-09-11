@@ -63,3 +63,34 @@ nmap <leader>L :source % <CR>
 " escape and yank XML
 nmap <leader>J :%s/"/\\"/g<CR>ggVGJ^y$u
 " }}}
+
+" vundle {{{
+let s:vpath='~/.vim/bundle/vundle/'
+if isdirectory(expand(s:vpath))
+  filetype off                   " required!
+
+  exe 'set rtp+=' . s:vpath
+  call vundle#rc()
+
+  " let Vundle manage Vundle
+  " required! 
+  Bundle 'gmarik/vundle'
+
+  " My Bundles here:
+  "
+  " original repos on github
+  Bundle 'tpope/vim-fugitive'
+  Bundle 'Lokaltog/vim-easymotion'
+  Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+  Bundle 'tpope/vim-rails.git'
+  Bundle 'vim-ruby/vim-ruby'
+  " vim-scripts repos
+  Bundle 'L9'
+  Bundle 'FuzzyFinder'
+  " non github repos
+  Bundle 'git://git.wincent.com/command-t.git'
+  " ...
+
+  filetype plugin indent on     " required!
+endif
+ " }}}
