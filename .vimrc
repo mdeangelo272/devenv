@@ -20,7 +20,7 @@ set number " show line numbers
 set wildmenu " use the wildmenu for tab complete in Ex modes
 set guioptions+=c " don't allow popup windows, use the console for dialogs
 set guioptions-=T " don't show the toolbar
-set guioptions-=m " don't show the menubar
+" set guioptions-=m " don't show the menubar
 
 "let g:netrw_liststyle=3 " treestyle directory exploration
 " }}}
@@ -39,7 +39,7 @@ set tabstop=2
 set shiftwidth=2
 " }}}
 
-" mappings {{{
+"  mappings {{{
 
 " window navigation
 nmap <C-j> <C-w>j
@@ -62,9 +62,24 @@ nmap <leader>L :source % <CR>
 
 " escape and yank XML
 nmap <leader>J :%s/"/\\"/g<CR>ggVGJ^y$u
+
+" quickly get to the vimrc
+nmap <leader>v :e ~/.vimrc<CR>
+nmap <leader>dv :e ~/dotFiles/.vimrc<CR>
 " }}}
 
-" vundle {{{
+" editing {{{
+inoremap <C-Space> <C-X><C-O>
+" }}}
+
+" {{{ filetype 
+  autocmd FileType cshtml set ft=html
+  autocmd FileType config set ft=xml
+  autocmd FileType cs set tabstop=4
+  autocmd FileType cs set shiftwidth=4
+" }}}
+
+" plugins {{{
 let s:vpath='~/.vim/bundle/vundle/'
 if isdirectory(expand(s:vpath))
   filetype off                   " required!
@@ -76,21 +91,52 @@ if isdirectory(expand(s:vpath))
   " required! 
   Bundle 'gmarik/vundle'
 
-  " My Bundles here:
-  "
-  " original repos on github
-  Bundle 'tpope/vim-fugitive'
-  Bundle 'Lokaltog/vim-easymotion'
-  Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-  Bundle 'tpope/vim-rails.git'
-  Bundle 'vim-ruby/vim-ruby'
-  " vim-scripts repos
-  Bundle 'L9'
-  Bundle 'FuzzyFinder'
-  " non github repos
-  Bundle 'git://git.wincent.com/command-t.git'
-  " ...
+  " snipmate and dependencies
+  Bundle "MarcWeber/vim-addon-mw-utils"
+  Bundle "tomtom/tlib_vim"
+  Bundle "honza/snipmate-snippets"
+  Bundle 'garbas/vim-snipmate'
+
+  " (x)html and xml
+  Bundle 'tristen/vim-sparkup'
+  Bundle 'matchit.zip'
+  " Bundle 'ragtag.vim'
+  " Bundle 'HtmlHelper'
+
+  " css/color
+  Bundle 'chrisbra/color_highlight'
+  let g:colorizer_auto_color = 1
+  let g:colorizer_auto_filetype='css,html'
+
+  " Bundle 'CSS-one-line--multi-line-folding'
+  " Bundle 'CSSMinister'
+  " Bundle 'css_color.vim'
+  " Bundle 'colorsel.vim'
+
+  " git
+  " Bundle 'tpope/vim-fugitive'
+  
+  " navigation
+  " Bundle 'FuzzyFinder'
+  " Bundle 'Lokaltog/vim-easymotion'
+  " Bundle <nerdtree>
+  " Bundle <command-t>
+
+  " ruby and rails
+  " Bundle 'vim-ruby/vim-ruby'
+  " Bundle 'tpope/vim-rails.git'
+
+  " tags
+  " Bundle 'TagList.vim'
+  " Bundle 'TagBar.vim' " perhaps should use this instead of TagList
+
+  " misc
+  " Bundle 'vim-scripts/dbext.vim'
 
   filetype plugin indent on     " required!
 endif
+ " }}}
+
+ " {{{ windows specific 
+ command! CMD exec("silent !start")
  " }}}
