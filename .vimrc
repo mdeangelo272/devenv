@@ -20,7 +20,7 @@ set number " show line numbers
 set wildmenu " use the wildmenu for tab complete in Ex modes
 set guioptions+=c " don't allow popup windows, use the console for dialogs
 set guioptions-=T " don't show the toolbar
-" set guioptions-=m " don't show the menubar
+set guioptions-=m " don't show the menubar
 
 "let g:netrw_liststyle=3 " treestyle directory exploration
 " }}}
@@ -105,13 +105,15 @@ if isdirectory(expand(s:vpath))
 
   " css/color
   Bundle 'chrisbra/color_highlight'
-  let g:colorizer_auto_color = 1
   let g:colorizer_auto_filetype='css,html'
 
   " Bundle 'CSS-one-line--multi-line-folding'
   " Bundle 'CSSMinister'
   " Bundle 'css_color.vim'
   " Bundle 'colorsel.vim'
+  
+  " markdown
+  Bundle 'hallison/vim-markdown'
 
   " git
   " Bundle 'tpope/vim-fugitive'
