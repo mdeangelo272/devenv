@@ -64,8 +64,11 @@ nmap <leader>L :source % <CR>
 nmap <leader>J :%s/"/\\"/g<CR>ggVGJ^y$u
 
 " quickly get to the vimrc
-nmap <leader>v :e ~/.vimrc<CR>
-nmap <leader>dv :e ~/dotFiles/.vimrc<CR>
+nmap <leader>gv :e ~/.vimrc<CR>
+nmap <leader>gdv :e ~/dotFiles/.vimrc<CR>
+nmap <leader>gs :e ~/.vim/bundle/snipMate-snippets/snippets<CR>
+
+
 " }}}
 
 " editing {{{
@@ -73,10 +76,13 @@ inoremap <C-Space> <C-X><C-O>
 " }}}
 
 " {{{ filetype 
-  autocmd FileType cshtml set ft=html
+  
   autocmd FileType config set ft=xml
   autocmd FileType cs set tabstop=4
   autocmd FileType cs set shiftwidth=4
+  autocmd FileType cshtml set ft=html
+  autocmd FileType html set tabstop=4
+  autocmd FileType html set shiftwidth=4
 " }}}
 
 " plugins {{{
@@ -94,8 +100,9 @@ if isdirectory(expand(s:vpath))
   " snipmate and dependencies
   Bundle "MarcWeber/vim-addon-mw-utils"
   Bundle "tomtom/tlib_vim"
-  Bundle "honza/snipmate-snippets"
+  Bundle "mdeangelo272/snipmate-snippets"
   Bundle 'garbas/vim-snipmate'
+  " let g:snipMate['no_match_completion_feedkeys_chars'] = ""
 
   " (x)html and xml
   Bundle 'tristen/vim-sparkup'
