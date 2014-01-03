@@ -27,6 +27,7 @@ set guioptions-=m " don't show the menubar
 
 " searching {{{
 set hlsearch " highlight my search results
+set ignorecase " first ignore case
 set smartcase " ignore my case unless I specify caps
 set noincsearch " start searching when I complete my pattern
 set nowrapscan " don't wrap the search to the top of the file
