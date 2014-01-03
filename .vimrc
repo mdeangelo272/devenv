@@ -100,11 +100,11 @@ if isdirectory(expand(s:vpath))
   Bundle 'gmarik/vundle'
 
   " snipmate and dependencies
-  Bundle "MarcWeber/vim-addon-mw-utils"
-  Bundle "tomtom/tlib_vim"
-  Bundle "mdeangelo272/snipmate-snippets"
-  Bundle 'garbas/vim-snipmate'
-  " let g:snipMate['no_match_completion_feedkeys_chars'] = ""
+  " Bundle 'MarcWeber/vim-addon-mw-utils'
+  " Bundle 'tomtom/tlib_vim'
+  " Bundle 'mdeangelo272/snipmate-snippets'
+  " Bundle 'garbas/vim-snipmate'
+  " let g:snipMate['no_match_completion_feedkeys_chars'] = ''
 
   " (x)html and xml
   Bundle 'tristen/vim-sparkup'
@@ -128,9 +128,9 @@ if isdirectory(expand(s:vpath))
   " Bundle 'tpope/vim-fugitive'
   
   " navigation
+  Bundle 'scrooloose/nerdtree'
   " Bundle 'FuzzyFinder'
   " Bundle 'Lokaltog/vim-easymotion'
-  " Bundle <nerdtree>
   " Bundle <command-t>
 
   " ruby and rails
