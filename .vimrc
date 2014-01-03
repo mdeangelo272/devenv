@@ -27,7 +27,7 @@ let g:netrw_liststyle=3 " treestyle directory exploration
 
 " searching {{{
 set hlsearch " highlight my search results
-set ignorecase " ignore case when searching 
+set ignorecase " first ignore case
 set smartcase " ignore my case unless I specify caps
 set noincsearch " start searching when I complete my pattern
 set nowrapscan " don't wrap the search to the top of the file
@@ -102,11 +102,11 @@ if isdirectory(expand(s:vpath))
   Bundle 'gmarik/vundle'
 
   " snipmate and dependencies
-  Bundle "MarcWeber/vim-addon-mw-utils"
-  Bundle "tomtom/tlib_vim"
-  Bundle "mdeangelo272/snipmate-snippets"
-  Bundle 'garbas/vim-snipmate'
-  " let g:snipMate['no_match_completion_feedkeys_chars'] = ""
+  " Bundle 'MarcWeber/vim-addon-mw-utils'
+  " Bundle 'tomtom/tlib_vim'
+  " Bundle 'mdeangelo272/snipmate-snippets'
+  " Bundle 'garbas/vim-snipmate'
+  " let g:snipMate['no_match_completion_feedkeys_chars'] = ''
 
   " (x)html and xml
   Bundle 'tristen/vim-sparkup'
@@ -130,9 +130,9 @@ if isdirectory(expand(s:vpath))
   " Bundle 'tpope/vim-fugitive'
   
   " navigation
+  Bundle 'scrooloose/nerdtree'
   " Bundle 'FuzzyFinder'
   " Bundle 'Lokaltog/vim-easymotion'
-  Bundle "scrooloose/nerdtree"
   " Bundle <command-t>
 
   " ruby and rails
