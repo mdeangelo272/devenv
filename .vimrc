@@ -22,11 +22,12 @@ set guioptions+=c " don't allow popup windows, use the console for dialogs
 set guioptions-=T " don't show the toolbar
 set guioptions-=m " don't show the menubar
 
-"let g:netrw_liststyle=3 " treestyle directory exploration
+let g:netrw_liststyle=3 " treestyle directory exploration
 " }}}
 
 " searching {{{
 set hlsearch " highlight my search results
+set ignorecase " ignore case when searching 
 set smartcase " ignore my case unless I specify caps
 set noincsearch " start searching when I complete my pattern
 set nowrapscan " don't wrap the search to the top of the file
@@ -50,6 +51,7 @@ nmap <C-l> <C-w>l
 " buffer and tab navigation
 nmap <M-j> :bp <CR>
 nmap <M-k> :bn <CR>
+nmap <M-i> :b# <CR>
 nmap <M-h> :tabp <CR>
 nmap <M-l> :tabn <CR>
 
@@ -63,12 +65,14 @@ nmap <leader>L :source % <CR>
 " escape and yank XML
 nmap <leader>J :%s/"/\\"/g<CR>ggVGJ^y$u
 
+" insert mode
+imap <M-C> <ESC>
+imap <S-tab> todo
+
 " quickly get to the vimrc
 nmap <leader>gv :e ~/.vimrc<CR>
 nmap <leader>gdv :e ~/dotFiles/.vimrc<CR>
 nmap <leader>gs :e ~/.vim/bundle/snipMate-snippets/snippets<CR>
-
-
 " }}}
 
 " editing {{{
@@ -128,7 +132,7 @@ if isdirectory(expand(s:vpath))
   " navigation
   " Bundle 'FuzzyFinder'
   " Bundle 'Lokaltog/vim-easymotion'
-  " Bundle <nerdtree>
+  Bundle "scrooloose/nerdtree"
   " Bundle <command-t>
 
   " ruby and rails
@@ -136,7 +140,7 @@ if isdirectory(expand(s:vpath))
   " Bundle 'tpope/vim-rails.git'
 
   " tags
-  " Bundle 'TagList.vim'
+  Bundle 'TagList.vim'
   " Bundle 'TagBar.vim' " perhaps should use this instead of TagList
 
   " misc
