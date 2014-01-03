@@ -51,6 +51,7 @@ nmap <C-l> <C-w>l
 " buffer and tab navigation
 nmap <M-j> :bp <CR>
 nmap <M-k> :bn <CR>
+nmap <M-i> :b# <CR>
 nmap <M-h> :tabp <CR>
 nmap <M-l> :tabn <CR>
 
