@@ -4,6 +4,8 @@ set nocompatible " Vim Baby!
 set hidden " don't requiring saving when switching between buffers
 set backspace=indent,eol,start " allow for more intuitive deletion
 set clipboard=unnamed " copy and paste from the system clipboard
+" set clipboard=unnamedplus " copy and paste from the system clipboard (Linux
+" - requires vim 7.4+)
 set cm=blowfish " encrypt files using the blowfish algorithm
 set foldmethod=marker
 " }}} 
