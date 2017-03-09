@@ -85,9 +85,13 @@ inoremap <C-Space> <C-X><C-O>
   autocmd FileType config set ft=xml
   autocmd FileType cs set tabstop=4
   autocmd FileType cs set shiftwidth=4
+  
   autocmd FileType cshtml set ft=html
-  autocmd FileType html set tabstop=4
-  autocmd FileType html set shiftwidth=4
+  autocmd FileType html set tabstop=2
+  autocmd FileType html set shiftwidth=2
+  
+  autocmd FileType py set tabstop=4
+  autocmd FileType py set shiftwidth=4
 " }}}
 
 " plugins {{{
