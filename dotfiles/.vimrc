@@ -1,13 +1,20 @@
+
 " general {{{
 filetype plugin indent on
 set nocompatible " Vim Baby!
 set hidden " don't requiring saving when switching between buffers
 set backspace=indent,eol,start " allow for more intuitive deletion
-set clipboard=unnamed " copy and paste from the system clipboard
-" set clipboard=unnamedplus " copy and paste from the system clipboard (Linux - requires vim 7.4+)
 set cm=blowfish " encrypt files using the blowfish algorithm
 set foldmethod=marker
 " }}} 
+
+" set clipboard=unnamedplus " copy and paste from the system clipboard (Linux - requires vim 7.4+)
+
+" copy and paste to a persistent buffer for multiple terminal sessions
+vmap <C-y> :'<,'>w! ~/.vim_clip<CR>
+nmap <C-y> :.w! ~/.vim_clip<CR>
+nmap <C-p> :r ~/.vim_clip<CR>
+" }}}
 
 " view {{{
 color desert
@@ -41,13 +48,19 @@ set tabstop=2
 set shiftwidth=2
 " }}}
 
-"  mappings {{{
+" netrw configurations {{{
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 20
+" }}}
 
-" window navigation
-nmap <C-j> <C-w>j
-nmap <C-k> <C-w>k
-nmap <C-h> <C-w>h
-nmap <C-l> <C-w>l
+"  mappings {{{ 
+" window resizing
+nmap <C-w><C-j> :resize -10 <CR>
+nmap <C-w><C-k> :resize +10 <CR>
+nmap <C-w><C-h> :vertical resize +10 <CR>
+nmap <C-w><C-l> :vertical resize -10 <CR>
 
 " buffer and tab navigation
 nmap <M-j> :bp <CR>
@@ -57,8 +70,11 @@ nmap <M-h> :tabp <CR>
 nmap <M-l> :tabn <CR>
 
 " add new lines in normal mode
-nmap <CR> o<ESC>
-nmap <S-CR> O<ESC>
+" nmap <CR> o<ESC>
+" nmap <S-CR> O<ESC>
+
+" reload vimrc
+nmap <leader>r :source ~/.vimrc <CR>
 
 " load current file
 nmap <leader>L :source % <CR>
@@ -72,7 +88,6 @@ imap <S-tab> todo
 
 " quickly get to the vimrc
 nmap <leader>gv :e ~/.vimrc<CR>
-nmap <leader>gdv :e ~/dotFiles/.vimrc<CR>
 nmap <leader>gs :e ~/.vim/bundle/snipMate-snippets/snippets<CR>
 " }}}
 
@@ -92,65 +107,84 @@ inoremap <C-Space> <C-X><C-O>
   
   autocmd FileType py set tabstop=4
   autocmd FileType py set shiftwidth=4
+  autocmd FileType py :highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+  autocmd FileType py :match OverLength /\%81v.\+/
 " }}}
 
 " plugins {{{
-let s:vpath='~/.vim/bundle/vundle/'
+let s:vpath='~/.vim/bundle/Vundle.vim/'
 if isdirectory(expand(s:vpath))
-  filetype off                   " required!
+  filetype off " required for Vundle
 
+  " set the runtime path to include Vundle and initialize
   exe 'set rtp+=' . s:vpath
-  call vundle#rc()
+  call vundle#begin()
 
-  " let Vundle manage Vundle
-  " required! 
-  Bundle 'gmarik/vundle'
+  " required: let Vundle manage Vundle
+  Plugin 'VundleVim/Vundle.vim'
 
-  " snipmate and dependencies
-  " Bundle 'MarcWeber/vim-addon-mw-utils'
-  " Bundle 'tomtom/tlib_vim'
-  " Bundle 'mdeangelo272/snipmate-snippets'
-  " Bundle 'garbas/vim-snipmate'
-  " let g:snipMate['no_match_completion_feedkeys_chars'] = ''
-
-  " (x)html and xml
-  Bundle 'tristen/vim-sparkup'
-  Bundle 'matchit.zip'
-  " Bundle 'ragtag.vim'
-  " Bundle 'HtmlHelper'
+  " markup (XML, HTML, JSON, etc)
+  " ******
+  " Plugin 'hallison/vim-markdown'
+  " Plugin 'tristen/vim-sparkup'
+  " Plugin 'matchit.zip'
+  " Plugin 'ragtag.vim'
+  " Plugin 'HtmlHelper'
 
   " css/color
-  Bundle 'chrisbra/color_highlight'
-  let g:colorizer_auto_filetype='css,html'
-
-  " Bundle 'CSS-one-line--multi-line-folding'
-  " Bundle 'CSSMinister'
-  " Bundle 'css_color.vim'
-  " Bundle 'colorsel.vim'
+  " ******
+  " Plugin 'chrisbra/color_highlight'
+  "   let g:colorizer_auto_filetype='css,html'
+  " Plugin 'CSS-one-line--multi-line-folding'
+  " Plugin 'CSSMinister'
+  " Plugin 'css_color.vim'
+  " Plugin 'colorsel.vim'
   
-  " markdown
-  Bundle 'hallison/vim-markdown'
-
-  " git
-  " Bundle 'tpope/vim-fugitive'
-  
-  " navigation
-  Bundle 'scrooloose/nerdtree'
-  " Bundle 'FuzzyFinder'
-  " Bundle 'Lokaltog/vim-easymotion'
-  " Bundle <command-t>
+  " python
+  " ******
+  Plugin 'davidhalter/jedi-vim'
+  Plugin 'tmhedberg/SimpylFold'
+  " Plugin 'vim-syntastic/syntastic'
+  Plugin 'nvie/vim-flake8'
 
   " ruby and rails
-  " Bundle 'vim-ruby/vim-ruby'
-  " Bundle 'tpope/vim-rails.git'
+  " ******
+  " Plugin 'vim-ruby/vim-ruby'
+  " Plugin 'tpope/vim-rails.git'
 
   " tags
-  Bundle 'TagList.vim'
-  " Bundle 'TagBar.vim' " perhaps should use this instead of TagList
+  " ******
+  " Plugin 'TagList.vim'
+  " Plugin 'TagBar.vim' " perhaps should use this instead of TagList
+   
+  " snipmate and dependencies
+  " ******
+  " Plugin 'MarcWeber/vim-addon-mw-utils'
+  " Plugin 'tomtom/tlib_vim'
+  " Plugin 'mdeangelo272/snipmate-snippets'
+  " Plugin 'garbas/vim-snipmate'
+  " let g:snipMate['no_match_completion_feedkeys_chars'] = ''
 
-  " misc
-  " Bundle 'vim-scripts/dbext.vim'
+  " git
+  " ******
+  " Plugin 'tpope/vim-fugitive'
+  
+  " navigation
+  " ******
+  Plugin 'tpope/vinegar.vim'
+  " Plugin 'scrooloose/nerdtree'
+  "   " configure for old school systems that don't support UTF-8
+  "   let g:NERDTreeDirArrowExpandable = '-'
+  "   let g:NERDTreeDirArrowCollapsible = '|'
+  " Plugin 'L9' " required for FuzzyFinder
+  " Plugin 'vim-scripts/FuzzyFinder'
+  " Plugin 'Lokaltog/vim-easymotion'
+  " Plugin <command-t>
 
+  " databases
+  " Plugin 'vim-scripts/dbext.vim'
+
+  call vundle#end()            " required
   filetype plugin indent on     " required!
 endif
  " }}}
