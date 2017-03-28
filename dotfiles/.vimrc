@@ -105,10 +105,9 @@ inoremap <C-Space> <C-X><C-O>
   autocmd FileType html set tabstop=2
   autocmd FileType html set shiftwidth=2
   
-  autocmd FileType py set tabstop=4
-  autocmd FileType py set shiftwidth=4
-  autocmd FileType py :highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-  autocmd FileType py :match OverLength /\%81v.\+/
+  autocmd FileType python set tabstop=4
+  autocmd FileType python set shiftwidth=4
+  autocmd FileType python highlight OverLength ctermbg=red ctermfg=black | match OverLength /\%80v.\+/
 " }}}
 
 " plugins {{{
