@@ -145,7 +145,7 @@ if isdirectory(expand(s:vpath))
   Plugin 'davidhalter/jedi-vim'
   Plugin 'tmhedberg/SimpylFold'
   " Plugin 'vim-syntastic/syntastic'
-  Plugin 'nvie/vim-flake8'
+  " Plugin 'nvie/vim-flake8'
 
   " ruby and rails
   " ******
@@ -171,7 +171,7 @@ if isdirectory(expand(s:vpath))
   
   " navigation
   " ******
-  Plugin 'tpope/vinegar.vim'
+  " Plugin 'tpope/vim-vinegar'
   " Plugin 'scrooloose/nerdtree'
   "   " configure for old school systems that don't support UTF-8
   "   let g:NERDTreeDirArrowExpandable = '-'
