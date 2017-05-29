@@ -109,8 +109,8 @@ inoremap <C-Space> <C-X><C-O>
   
   autocmd FileType python set tabstop=4
   autocmd FileType python set shiftwidth=4
+  autocmd FileType python match OverLength /\%80v.\+/
   autocmd FileType python highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-  autocmd FileType python match OverLength /\%81v.\+/
 " }}}
 
 " plugins {{{
@@ -147,7 +147,7 @@ if isdirectory(expand(s:vpath))
   Plugin 'davidhalter/jedi-vim'
   Plugin 'tmhedberg/SimpylFold'
   " Plugin 'vim-syntastic/syntastic'
-  Plugin 'nvie/vim-flake8'
+  " Plugin 'nvie/vim-flake8'
 
   " ruby and rails
   " ******
@@ -173,7 +173,7 @@ if isdirectory(expand(s:vpath))
   
   " navigation
   " ******
-  Plugin 'tpope/vinegar.vim'
+  " Plugin 'tpope/vim-vinegar'
   " Plugin 'scrooloose/nerdtree'
   "   " configure for old school systems that don't support UTF-8
   "   let g:NERDTreeDirArrowExpandable = '-'
