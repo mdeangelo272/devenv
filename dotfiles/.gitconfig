@@ -3,7 +3,10 @@
 	name = Michael DeAngelo
 [core]
 	editor = vim
+  excludesfile = /Users/mdeangelo272/.gitignore_global
+  autocrlf = input
 [alias]
 	tree = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%n' --abbrev-commit --date=relative --branches
 	tree2 = log --all --graph --decorate --oneline --simplify-by-decoration
 	tree3 = log --all --graph --decorate --oneline
+  ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"

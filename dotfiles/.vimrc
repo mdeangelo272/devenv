@@ -8,9 +8,11 @@ set cm=blowfish " encrypt files using the blowfish algorithm
 set foldmethod=marker
 " }}} 
 
+
+" copy and paste {{{
 " set clipboard=unnamedplus " copy and paste from the system clipboard (Linux - requires vim 7.4+)
 
-" copy and paste to a persistent buffer for multiple terminal sessions
+" to a persistent buffer for multiple terminal sessions
 vmap <C-y> :'<,'>w! ~/.vim_clip<CR>
 nmap <C-y> :.w! ~/.vim_clip<CR>
 nmap <C-p> :r ~/.vim_clip<CR>
@@ -105,10 +107,10 @@ inoremap <C-Space> <C-X><C-O>
   autocmd FileType html set tabstop=2
   autocmd FileType html set shiftwidth=2
   
-  autocmd FileType py set tabstop=4
-  autocmd FileType py set shiftwidth=4
-  autocmd FileType py :highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-  autocmd FileType py :match OverLength /\%81v.\+/
+  autocmd FileType python set tabstop=4
+  autocmd FileType python set shiftwidth=4
+  autocmd FileType python highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+  autocmd FileType python match OverLength /\%81v.\+/
 " }}}
 
 " plugins {{{
