@@ -1,4 +1,3 @@
-
 " general {{{
 filetype plugin indent on
 set nocompatible " Vim Baby!
@@ -7,7 +6,6 @@ set backspace=indent,eol,start " allow for more intuitive deletion
 set cm=blowfish " encrypt files using the blowfish algorithm
 set foldmethod=marker
 " }}} 
-
 
 " copy and paste {{{
 " set clipboard=unnamedplus " copy and paste from the system clipboard (Linux - requires vim 7.4+)
@@ -109,8 +107,8 @@ inoremap <C-Space> <C-X><C-O>
   
   autocmd FileType python set tabstop=4
   autocmd FileType python set shiftwidth=4
-  autocmd FileType python match OverLength /\%80v.\+/
   autocmd FileType python highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+  autocmd FileType python match OverLength /\%80v.\+/
 " }}}
 
 " plugins {{{
@@ -189,7 +187,7 @@ if isdirectory(expand(s:vpath))
   call vundle#end()            " required
   filetype plugin indent on     " required!
 endif
- " }}}
+" }}}
 
  " {{{ windows specific 
  command! CMD exec("silent !start")
