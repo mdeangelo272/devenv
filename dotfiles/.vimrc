@@ -5,6 +5,7 @@ set hidden " don't requiring saving when switching between buffers
 set backspace=indent,eol,start " allow for more intuitive deletion
 set cm=blowfish " encrypt files using the blowfish algorithm
 set foldmethod=marker
+set noswapfile " I have plenty thank you
 " }}} 
 
 " copy and paste {{{
@@ -46,13 +47,17 @@ set autoindent
 set expandtab
 set tabstop=2
 set shiftwidth=2
+
+"set listchars=eol:¬,tab:.>,trail:~,extends:>,precedes:<,space:␣ " define whitespace characters
+set listchars=eol:&,tab:^t,trail:~,extends:>,precedes:<,space:_ " define whitespace characters
+
 " }}}
 
 " netrw configurations {{{
-let g:netrw_liststyle = 3
-let g:netrw_browse_split = 4
-let g:netrw_altv = 1
-let g:netrw_winsize = 20
+" let g:netrw_liststyle = 3
+" let g:netrw_browse_split = 4
+" let g:netrw_altv = 1
+" let g:netrw_winsize = 20
 " }}}
 
 "  mappings {{{ 
@@ -109,6 +114,9 @@ inoremap <C-Space> <C-X><C-O>
   autocmd FileType python set shiftwidth=4
   autocmd FileType python highlight OverLength ctermbg=red ctermfg=white guibg=#592929
   autocmd FileType python match OverLength /\%80v.\+/
+
+  autocmd FileType yaml set tabstop=2
+  autocmd FileType yaml set shiftwidth=2
 " }}}
 
 " plugins {{{
@@ -151,6 +159,10 @@ if isdirectory(expand(s:vpath))
   " ******
   " Plugin 'vim-ruby/vim-ruby'
   " Plugin 'tpope/vim-rails.git'
+
+  " ansible
+  " ******
+  Plugin 'pearofducks/ansible-vim'
 
   " tags
   " ******
