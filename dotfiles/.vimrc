@@ -84,9 +84,6 @@ nmap <leader>r :source ~/.vimrc <CR>
 " load current file
 nmap <leader>L :source % <CR>
 
-" escape and yank XML
-nmap <leader>J :%s/"/\\"/g<CR>ggVGJ^y$u
-
 " insert mode
 imap <M-C> <ESC>
 imap <S-tab> todo

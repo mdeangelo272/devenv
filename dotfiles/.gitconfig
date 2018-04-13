@@ -9,6 +9,7 @@
 	tree  = log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%n' --abbrev-commit --date=relative --branches
 	tree2 = log --all --graph --decorate --oneline --simplify-by-decoration
 	tree3 = log --all --graph --decorate --oneline
+	tree4  = log --all --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%n' --abbrev-commit --date=relative --simplify-by-decoration
   ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
 [credential]
 	helper = cache --timeout=2628000
