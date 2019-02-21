@@ -6,6 +6,7 @@ set backspace=indent,eol,start " allow for more intuitive deletion
 set cm=blowfish " encrypt files using the blowfish algorithm
 set foldmethod=marker
 set noswapfile " I have plenty thank you
+set modeline
 " }}} 
 
 " copy and paste {{{
@@ -31,7 +32,6 @@ set guioptions+=c " don't allow popup windows, use the console for dialogs
 set guioptions-=T " don't show the toolbar
 set guioptions-=m " don't show the menubar
 
-let g:netrw_liststyle=3 " treestyle directory exploration
 " }}}
 
 " searching {{{
@@ -54,10 +54,11 @@ set listchars=eol:&,tab:^t,trail:~,extends:>,precedes:<,space:_ " define whitesp
 " }}}
 
 " netrw configurations {{{
-" let g:netrw_liststyle = 3
+let g:netrw_preview = 1
+let g:netrw_liststyle=3 " treestyle directory exploration
 " let g:netrw_browse_split = 4
 " let g:netrw_altv = 1
-" let g:netrw_winsize = 20
+let g:netrw_winsize = 20
 " }}}
 
 "  mappings {{{ 
@@ -86,7 +87,8 @@ nmap <leader>L :source % <CR>
 
 " insert mode
 imap <M-C> <ESC>
-imap <S-tab> todo
+imap <S-tab> <C-d>
+
 
 " quickly get to the vimrc
 nmap <leader>gv :e ~/.vimrc<CR>
@@ -114,6 +116,9 @@ inoremap <C-Space> <C-X><C-O>
 
   autocmd FileType yaml set tabstop=2
   autocmd FileType yaml set shiftwidth=2
+
+  autocmd FileType markdown set tabstop=4
+  autocmd FileType markdown set shiftwidth=4
 " }}}
 
 " plugins {{{
@@ -147,8 +152,8 @@ if isdirectory(expand(s:vpath))
   
   " python
   " ******
-  Plugin 'davidhalter/jedi-vim'
-  Plugin 'tmhedberg/SimpylFold'
+  " Plugin 'davidhalter/jedi-vim'
+  " Plugin 'tmhedberg/SimpylFold'
   " Plugin 'vim-syntastic/syntastic'
   " Plugin 'nvie/vim-flake8'
 

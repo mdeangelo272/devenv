@@ -2,6 +2,15 @@
 #    alias vim=/Applications/MacVim.app/Contents/MacOS/Vim
 # fi
 
+# Set Bash Completion
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
+fi
+
+
+# Set my terminal prompt
+PS1="\[\033[036m\][\!] \W $ \[\033[037m\]"
+#PS1="\[\033[036m\]\w $ \[\033[037m\]"
 
 # git helpers
 _git_multi() {
@@ -20,8 +29,6 @@ _activate_private() {
   source ~/.priv/private.sh
 }
 
-
-
 # Setup pyenv and other python related things
 _activate_pyenv() {
   eval "$(pyenv init -)"
@@ -29,7 +36,8 @@ _activate_pyenv() {
 }
 _jup_up() {
 	pyenv shell 3.5.2
-	pyenv activate jup
+	#pyenv activate jup
+  cd /Users/mdeangelo272/dev/repos/mdeangelo272/jupyter
 	jupyter notebook &
 }
 
@@ -44,6 +52,13 @@ _activate_chef() {
   eval "$(chef shell-init bash)"
 }
 
+_set_kube_context(){
+  local context=$1
+  PS1_ORIG=${PS1_ORIG:-$PS1}
+  alias kubectl="kubectl --context $context"
+  PS1="($context) $PS1_ORIG"
+}
+
 
 # Setup java related things
 _activate_java_dev() {
@@ -52,3 +67,10 @@ _activate_java_dev() {
   export JPDA_OPTS="-agentlib:jdwp=transport=dt_socket,address=8000,server=y,suspend=n"
   export GRADLE_HOME=/usr/local/Cellar/gradle/2.4
 }
+
+# GPG
+#export GPG_TTY=$(tty)
+
+# Activation
+_activate_pyenv
+_activate_private

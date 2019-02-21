@@ -1,6 +1,7 @@
 [user]
 	email = iam@mdeangelo272.me
 	name = Michael DeAngelo
+	signingkey = 367B5C538B5A3320
 [core]
 	editor = vim
   excludesfile = /Users/mdeangelo272/.gitignore_global
