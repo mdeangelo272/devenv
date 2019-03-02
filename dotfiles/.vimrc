@@ -111,8 +111,8 @@ inoremap <C-Space> <C-X><C-O>
   
   autocmd FileType python set tabstop=4
   autocmd FileType python set shiftwidth=4
-  autocmd FileType python highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-  autocmd FileType python match OverLength /\%80v.\+/
+"  autocmd FileType python highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+"  autocmd FileType python match OverLength /\%80v.\+/
 
   autocmd FileType yaml set tabstop=2
   autocmd FileType yaml set shiftwidth=2

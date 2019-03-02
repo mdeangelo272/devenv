@@ -59,6 +59,8 @@ _set_kube_context(){
   PS1="($context) $PS1_ORIG"
 }
 
+export public_ip=$(curl ipinfo.io/ip 2> /dev/null)
+
 
 # Setup java related things
 _activate_java_dev() {
@@ -73,4 +75,3 @@ _activate_java_dev() {
 
 # Activation
 _activate_pyenv
-_activate_private
