@@ -7,6 +7,8 @@ if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
 
+PATH=~/bin:$PATH
+
 
 # Set my terminal prompt
 PS1="\[\033[036m\][\!] \W $ \[\033[037m\]"
@@ -41,13 +43,13 @@ _jup_up() {
 	jupyter notebook &
 }
 
-# Setup rbenv and other ruby or chef things
-_activate_rbenv() {
-  PATH=~/.rbenv/shims:$PATH:~/bin
-  export NVM_DIR=~/.nvm
-  source $(brew --prefix nvm)/nvm.sh
-  eval "$(rbenv init -)"
+# Setup chruby and other ruby or chef things
+_activate_chruby() {
+  source /usr/local/share/chruby/chruby.sh
+  source /usr/local/share/chruby/auto.sh
+  chruby ruby-2.6.3
 }
+
 _activate_chef() {
   eval "$(chef shell-init bash)"
 }
@@ -75,3 +77,16 @@ _activate_java_dev() {
 
 # Activation
 _activate_pyenv
+_activate_chruby
+
+complete -C /usr/local/Cellar/terraform/0.11.13/bin/terraform terraform
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.bash ] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.bash
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.bash ] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.bash
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.bash ] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.bash

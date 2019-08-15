@@ -93,6 +93,8 @@ imap <S-tab> <C-d>
 " quickly get to the vimrc
 nmap <leader>gv :e ~/.vimrc<CR>
 nmap <leader>gs :e ~/.vim/bundle/snipMate-snippets/snippets<CR>
+
+set pastetoggle=<leader>i
 " }}}
 
 " editing {{{
