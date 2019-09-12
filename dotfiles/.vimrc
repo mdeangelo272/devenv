@@ -121,6 +121,10 @@ inoremap <C-Space> <C-X><C-O>
 
   autocmd FileType markdown set tabstop=4
   autocmd FileType markdown set shiftwidth=4
+
+  autocmd BufNewFile,BufRead Jenkinsfile set ft=groovy
+  autocmd FileType groovy set tabstop=4
+  autocmd FileType groovy set shiftwidth=4
 " }}}
 
 " plugins {{{

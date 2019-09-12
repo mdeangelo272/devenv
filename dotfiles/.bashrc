@@ -9,7 +9,6 @@ fi
 
 PATH=~/bin:$PATH
 
-
 # Set my terminal prompt
 PS1="\[\033[036m\][\!] \W $ \[\033[037m\]"
 #PS1="\[\033[036m\]\w $ \[\033[037m\]"
@@ -47,7 +46,7 @@ _jup_up() {
 _activate_chruby() {
   source /usr/local/share/chruby/chruby.sh
   source /usr/local/share/chruby/auto.sh
-  chruby ruby-2.6.3
+  #chruby ruby-2.6.3
 }
 
 _activate_chef() {
@@ -72,6 +71,27 @@ _activate_java_dev() {
   export GRADLE_HOME=/usr/local/Cellar/gradle/2.4
 }
 
+_aws_whoami() {
+  echo "Profile: $AWS_PROFILE"
+  echo "Region: $AWS_REGION"
+  aws sts get-caller-identity
+}
+
+_all() {
+  dirs=$(ls)
+
+  for dir in $dirs; do
+    #export $dir
+    pushd $dir >> /dev/null
+    echo `pwd`
+    echo '------'
+    $@
+    popd >> /dev/null
+    echo
+    #unset dir
+  done
+}
+
 # GPG
 #export GPG_TTY=$(tty)
 
@@ -80,13 +100,3 @@ _activate_pyenv
 _activate_chruby
 
 complete -C /usr/local/Cellar/terraform/0.11.13/bin/terraform terraform
-
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.bash ] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.bash
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.bash ] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.bash
-# tabtab source for slss package
-# uninstall by removing these lines or running `tabtab uninstall slss`
-[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.bash ] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.bash
