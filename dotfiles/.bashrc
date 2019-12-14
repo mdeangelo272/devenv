@@ -26,20 +26,15 @@ _git_last_touched() {
   "git ls-tree -r --name-only HEAD | while read filename; do   echo \"$(git log -1 --format="%ai %ae" -- $filename) $filename\"; done | sort -r | less"
 }
 
-_activate_private() {
-  source ~/.priv/private.sh
+_activate_kubecomplete() {
+  #kubectl completion bash > ~/kube_completion.sh
+  source ~/kube_completion.sh 
 }
 
 # Setup pyenv and other python related things
 _activate_pyenv() {
   eval "$(pyenv init -)"
   #eval "$(pyenv virtualenv-init -)"
-}
-_jup_up() {
-	pyenv shell 3.5.2
-	#pyenv activate jup
-  cd /Users/mdeangelo272/dev/repos/mdeangelo272/jupyter
-	jupyter notebook &
 }
 
 # Setup chruby and other ruby or chef things
@@ -65,15 +60,17 @@ export public_ip=$(curl ipinfo.io/ip 2> /dev/null)
 
 # Setup java related things
 _activate_java_dev() {
-  export JPDA_ADDRESS=8000
-  export JPDA_TRANSPORT=dt_socket
-  export JPDA_OPTS="-agentlib:jdwp=transport=dt_socket,address=8000,server=y,suspend=n"
-  export GRADLE_HOME=/usr/local/Cellar/gradle/2.4
+  #export JPDA_ADDRESS=8000
+  #export JPDA_TRANSPORT=dt_socket
+  #export JPDA_OPTS="-agentlib:jdwp=transport=dt_socket,address=8000,server=y,suspend=n"
+  #export GRADLE_HOME=/usr/local/Cellar/gradle/2.4
+  export GROOVY_HOME=/usr/local/opt/groovy/libexec
 }
 
 _aws_whoami() {
-  echo "Profile: $AWS_PROFILE"
-  echo "Region: $AWS_REGION"
+  #echo "Profile: $AWS_PROFILE"
+  #echo "Region: $AWS_REGION"
+  aws configure list | egrep '(profile|region)'
   aws sts get-caller-identity
 }
 
@@ -96,7 +93,11 @@ _all() {
 #export GPG_TTY=$(tty)
 
 # Activation
+_activate_kubecomplete 
 _activate_pyenv
 _activate_chruby
 
-complete -C /usr/local/Cellar/terraform/0.11.13/bin/terraform terraform
+#complete -C /usr/local/Cellar/terraform/0.11.13/bin/terraform terraform
+complete -C /usr/local/bin/terraform terraform
+complete -C '/usr/local/bin/aws_completer' aws
+

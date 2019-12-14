@@ -5,3 +5,5 @@ syntax: glob
 *.swn
 *.swo
 *.orig
+ignore
+.DS_Store
