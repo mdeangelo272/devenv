@@ -60,7 +60,9 @@ _set_kube_context(){
   PS1="($context) $PS1_ORIG"
 }
 
-export public_ip=$(curl ipinfo.io/ip 2> /dev/null)
+_public_ip() {
+  $(curl ipinfo.io/ip 2> /dev/null)
+}
 
 
 # Setup java related things
@@ -96,7 +98,7 @@ _all() {
 #export GPG_TTY=$(tty)
 
 # Activation
-_activate_pyenv
-_activate_chruby
+#_activate_pyenv
+#_activate_chruby
 
-complete -C /usr/local/Cellar/terraform/0.11.13/bin/terraform terraform
+#complete -C /usr/local/Cellar/terraform/0.11.13/bin/terraform terraform
