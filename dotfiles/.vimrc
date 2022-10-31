@@ -7,6 +7,7 @@ set cm=blowfish " encrypt files using the blowfish algorithm
 set foldmethod=marker
 set noswapfile " I have plenty thank you
 set modeline
+set mmp=5000 " set the max memory pattern
 " }}} 
 
 " copy and paste {{{

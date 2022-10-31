@@ -48,6 +48,10 @@ _activate_chef() {
   eval "$(chef shell-init bash)"
 }
 
+_activate_java {
+  export JAVA_HOME=$(/usr/libexec/java_home -v 11.0.8)
+}
+
 _set_kube_context(){
   local context=$1
   PS1_ORIG=${PS1_ORIG:-$PS1}
@@ -96,11 +100,8 @@ _all() {
 
 # Activation
 
-#complete -C /usr/local/Cellar/terraform/0.11.13/bin/terraform terraform
 _activate_kubecomplete 
 _activate_pyenv
 #_activate_chruby
 
-#complete -C /usr/local/Cellar/terraform/0.11.13/bin/terraform terraform
-#complete -C /usr/local/bin/terraform terraform
 #complete -C '/usr/local/bin/aws_completer' aws

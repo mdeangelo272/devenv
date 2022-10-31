@@ -106,6 +106,7 @@ source $ZSH/oh-my-zsh.sh
 #  . $(brew --prefix)/etc/bash_completion
 #fi
 
+
 PATH=~/bin:$PATH
 
 # git helpers
@@ -121,14 +122,10 @@ _git_last_touched() {
   "git ls-tree -r --name-only HEAD | while read filename; do   echo \"$(git log -1 --format="%ai %ae" -- $filename) $filename\"; done | sort -r | less"
 }
 
-_activate_kubecomplete() {
-  #kubectl completion bash > ~/kube_completion.sh
-  #source ~/kube_completion.sh 
-}
-
 # Setup pyenv and other python related things
 _activate_pyenv() {
-  eval "$(pyenv init -)"
+  eval "$(pyenv init --path)"
+  echo 'loaded pyenv'
   #eval "$(pyenv virtualenv-init -)"
 }
 
@@ -141,6 +138,12 @@ _activate_chruby() {
 
 _activate_chef() {
   eval "$(chef shell-init bash)"
+}
+
+_activate_completion() {
+  fpath=($fpath ~/.zsh/completion)
+  source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+  source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 }
 
 _set_kube_context(){
@@ -177,20 +180,38 @@ _all() {
   done
 }
 
+_activate_conda() {
+  # >>> conda initialize >>>
+  # !! Contents within this block are managed by 'conda init' !!
+  __conda_setup="$('/usr/local/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+  if [ $? -eq 0 ]; then
+      eval "$__conda_setup"
+  else
+      if [ -f "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
+          . "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh"
+      else
+          export PATH="/usr/local/Caskroom/miniconda/base/bin:$PATH"
+      fi
+  fi
+  unset __conda_setup
+  # <<< conda initialize <<<
+}
+
 # GPG
 #export GPG_TTY=$(tty)
 
 # Activation
 
+_activate_completion
 _activate_pyenv
-#_activate_kubecomplete 
+#_activate_conda
 #_activate_chruby
+#
 
 
-#complete -C /usr/local/Cellar/terraform/0.11.13/bin/terraform terraform
-#complete -C /usr/local/bin/terraform terraform
-#complete -C '/usr/local/bin/aws_completer' aws
+
 
 if [[ $(pwd) == '/' ]]; then
   cd ~
 fi
+
