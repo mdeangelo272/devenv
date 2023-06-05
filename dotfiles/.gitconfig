@@ -16,3 +16,5 @@
   obj = cat-file -p
   ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
 
+[pull]
+	rebase = false
