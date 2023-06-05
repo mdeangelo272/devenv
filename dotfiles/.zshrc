@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/mdeangelo272/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -124,9 +124,39 @@ _git_last_touched() {
 
 # Setup pyenv and other python related things
 _activate_pyenv() {
-  eval "$(pyenv init --path)"
-  echo 'loaded pyenv'
-  #eval "$(pyenv virtualenv-init -)"
+  # eval "$(pyenv init --path)"
+  # echo 'loaded pyenv'
+  
+  export PYENV_ROOT="$HOME/.pyenv"
+  command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init -)"
+}
+
+_activate_python_default_env() {
+  DEFAULT_PYTHON_ENV_PATH=${DEFAULT_PYTHON_ENV_PATH:=~/python/default}
+  if [ ! -d $DEFAULT_PYTHON_ENV_PATH ]; then 
+    echo "CREATING DEFAULT PYTHON ENVIRONMENT in $DEFAULT_PYTHON_ENV_PATH"
+    mkdir -p $DEFAULT_PYTHON_ENV_PATH
+    python -m venv $DEFAULT_PYTHON_ENV_PATH
+  fi
+  source $DEFAULT_PYTHON_ENV_PATH/bin/activate
+}
+
+_activate_conda() {
+  # >>> conda initialize >>>
+  # !! Contents within this block are managed by 'conda init' !!
+  __conda_setup="$('/usr/local/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+  if [ $? -eq 0 ]; then
+      eval "$__conda_setup"
+  else
+      if [ -f "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
+          . "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh"
+      else
+          export PATH="/usr/local/Caskroom/miniconda/base/bin:$PATH"
+      fi
+  fi
+  unset __conda_setup
+  # <<< conda initialize <<<
 }
 
 # Setup chruby and other ruby or chef things
@@ -142,8 +172,8 @@ _activate_chef() {
 
 _activate_completion() {
   fpath=($fpath ~/.zsh/completion)
-  source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-  source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+  # source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+  # source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 }
 
 _set_kube_context(){
@@ -180,22 +210,6 @@ _all() {
   done
 }
 
-_activate_conda() {
-  # >>> conda initialize >>>
-  # !! Contents within this block are managed by 'conda init' !!
-  __conda_setup="$('/usr/local/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-  if [ $? -eq 0 ]; then
-      eval "$__conda_setup"
-  else
-      if [ -f "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
-          . "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh"
-      else
-          export PATH="/usr/local/Caskroom/miniconda/base/bin:$PATH"
-      fi
-  fi
-  unset __conda_setup
-  # <<< conda initialize <<<
-}
 
 # GPG
 #export GPG_TTY=$(tty)
@@ -204,9 +218,9 @@ _activate_conda() {
 
 _activate_completion
 _activate_pyenv
+_activate_python_default_env
 #_activate_conda
 #_activate_chruby
-#
 
 
 
