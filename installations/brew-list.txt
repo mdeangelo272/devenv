@@ -1,0 +1,8 @@
+aws-cdk
+awscli
+# octave
+pyenv
+tmux
+tree
+google-cloud-sdk
+visual-studio-code
