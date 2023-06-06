@@ -4,6 +4,7 @@ jupyterlab>=4.0.1
 pandas>=2.0.2
 matplotlib>=3.7.1
 plotly>=5.14.1
+ipywidgets>=7.6 # required to get plotly working in a jupyter lab session
 
 # further data science tools
 
